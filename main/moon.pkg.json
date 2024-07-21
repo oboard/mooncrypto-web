@@ -1,0 +1,14 @@
+{
+  "import": [
+    {
+      "path": "oboard/mooncrypto/lib",
+      "alias": "mooncrypto"
+    }
+  ],
+  "is-main": true,
+  "link": {
+    "wasm": {
+      "exports": ["h_rs", "h_rd", "h_re"]
+    }
+  }
+}

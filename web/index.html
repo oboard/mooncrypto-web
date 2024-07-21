@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `heaven build`.
+  -->
+  <base href="$HEAVEN_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Heaven project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="mooncrypto-web">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <title>mooncrypto-web</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- This script adds the heaven initialization JS code -->
+  <script src="assets/lib/heaven.mjs" type="module" defer></script>
+</head>
+
+<body>
+  <div id="app">
+    <canvas id="canvas" style="display: none;"></canvas>
+    <input type="text" id="input" placeholder="Enter text here">
+    <button id="md5">MD5</button>
+    <button id="sha1">SHA1</button>
+    <button id="sha256">SHA256</button>
+    <button id="base64encode">Base64 Encode</button>
+    <button id="base64decode">Base64 Decode</button>
+
+    <p id="output"></p>
+  </div>
+  <script type="module">
+    import { callFunction, defineEvent } from './assets/lib/heaven.mjs';
+    const buttons = document.getElementsByTagName('button')
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const input = document.getElementById('input').value;
+        const output = callFunction(button.id, input);
+        defineEvent('output', (str) => {
+          document.getElementById('output').innerHTML = str;
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
